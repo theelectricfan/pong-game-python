@@ -12,9 +12,7 @@ class Paddle(turtle.Turtle):
     def go_up(self):
         new_y = self.ycor() + 0.1
         self.goto(self.xcor(), new_y)
-        print("going up")
 
     def go_down(self):
         new_y = self.ycor() - 0.1
         self.goto(self.xcor(), new_y)
-        print("going down")

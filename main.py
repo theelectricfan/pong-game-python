@@ -3,6 +3,7 @@ from boundary import Boundary
 from centreline import CentreLine
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 
 screen = turtle.Screen()
 screen.tracer(0, 0)
@@ -12,6 +13,7 @@ screen.bgcolor("black")
 boundary = Boundary()
 centreLine = CentreLine()
 ball = Ball()
+scoreboard = Scoreboard()
 paddle1 = Paddle((-350, 0))
 paddle2 = Paddle((350, 0))
 
@@ -56,10 +58,15 @@ screen.onkeyrelease(lambda: update_key_state("i", False), "i")
 screen.onkeypress(lambda: update_key_state("k", True), "k")
 screen.onkeyrelease(lambda: update_key_state("k", False), "k")
 
+game_on = True
 # Main game loop
-while True:
-    ball.move(paddle1.position(), paddle2.position())
+while game_on:
+    ball.move(paddle1.position(), paddle2.position(), scoreboard)
     move_paddles()
     screen.update()
+    if scoreboard.l_score == 5:
+        game_on = False
+    if scoreboard.r_score == 5:
+        game_on = False
 
 screen.exitonclick()
